@@ -1,0 +1,39 @@
+{
+  "name": "dangermark-extension",
+  "version": "0.0.1",
+  "description": "Developer web extension to warn on detecting environment",
+  "author": "Allen Hsu",
+  "license": "0BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aldhsu/dangermark-extension"
+  },
+  "scripts": {
+    "start": "webpack --watch --config webpack.config.js",
+    "web-ext": "cd dist && web-ext run"
+  },
+  "//": "[TODO] Remove webpack-sources when this is fixed: https://github.com/webpack/webpack-sources/issues/28",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.10",
+    "extract-loader": "^1.0.2",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "extricate-loader": "^2.0.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "imports-loader": "^0.7.1",
+    "interpolate-loader": "^2.0.0",
+    "prop-loader": "^1.0.0",
+    "raw-loader": "^0.5.1",
+    "spawn-loader": "^4.0.0",
+    "web-ext": "^2.4.0",
+    "webextension-polyfill": "^0.2.1",
+    "webpack": "^3.11.0",
+    "webpack-sources": "1.0.1"
+  }
+}

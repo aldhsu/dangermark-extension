@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "{{prop-loader?name!../package.json}}",
+  "version": "{{prop-loader?version!../package.json}}",
+  "description": "{{prop-loader?description!../package.json}}",
+  "author": "{{prop-loader?author!../package.json}}",
+  "options_ui": {
+    "page": "{{./options/index.html}}"
+  },
+  "content_scripts": [
+    {
+      "js": ["{{./content/index.js}}"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab"
+  ]
+}
