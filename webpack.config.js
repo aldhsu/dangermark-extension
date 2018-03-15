@@ -70,17 +70,11 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: [
-                ['env', { modules: false }]
+                "@babel/preset-react"
+
               ]
             }
           },
-          // Ensure babel-polyfill is imported
-          // Normally, this would just be an entry point, but relying on
-          // spawn-loader is preventing us from doing that.
-          {
-            loader: 'imports-loader',
-            query: '__babelPolyfill=babel-polyfill'
-          }
         ]
       },
       {
