@@ -1,6 +1,3 @@
-let port = browser.runtime.connect({ name: 'webextensions-boilerplate' });
+import Warning from "./lib/warning";
 
-port.postMessage({ greeting: 'hello from content script' });
-port.onMessage.addListener(function(message) {
-  console.log(message.greeting);
-});
+new Warning().apply();
