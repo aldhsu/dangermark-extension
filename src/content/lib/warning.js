@@ -1,23 +1,14 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Overlay from '../components/overlay.jsx';
-
 export default class Warning {
-  constructor({context = window, doc = document} = {}) {
-    this.doc = doc;
+  constructor({context = window} = {}) {
     this.context = context;
     this.warning = null;
   }
 
-  async apply() {
-    await this._testPage();
-    if (!this.warning) return;
-
-    this._injectRoot();
-    this._attachOverlay();
+  get shouldWarn() {
+    return this.warning;
   }
 
-  async _testPage() {
+  async testPage() {
     try {
       const url = this.context.location.toString();
       const warnings = await browser.storage.local.get().then((settings) => { return settings.warnings });
@@ -31,6 +22,8 @@ export default class Warning {
     } catch(e) {
       throw e;
     }
+
+    return this;
   }
 
   _buildCSS() {
@@ -45,18 +38,5 @@ export default class Warning {
   }
 `
   }
-  _injectRoot() {
-    this.injectedRoot = this.doc.createElement('div');
-    this.injectedRoot.id = "page-warning-extension-overlay";
-    this.doc.body.appendChild(this.injectedRoot);
-  }
-
-  _attachOverlay() {
-    render(
-      React.createElement(Overlay, { settings: this.warning }, null),
-      this.injectedRoot,
-    );
-  }
-
 }
 
