@@ -63,7 +63,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.js$/,
+        test: /\.js[x]*$/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
@@ -100,6 +100,9 @@ module.exports = {
         use: 'imports-loader?browser=>undefined'
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new CleanWebpackPlugin(DIST_DIR),
