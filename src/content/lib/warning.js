@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import Overlay from '../components/overlay.jsx';
 
 export default class Warning {
-  constructor({context: window, doc: document}) {
+  constructor({context = window, doc = document} = {}) {
     this.doc = doc;
     this.context = context;
     this.warning = null;
@@ -28,7 +28,6 @@ export default class Warning {
       if (!address) return;
 
       this.warning = warnings[address];
-      console.log(this.warning);
     } catch(e) {
       throw e;
     }
@@ -53,7 +52,10 @@ export default class Warning {
   }
 
   _attachOverlay() {
-    render(<Overlay settings={this.warning}/>, this.injectedRoot);
+    render(
+      React.createElement(Overlay, { settings: this.warning }, null),
+      this.injectedRoot,
+    );
   }
 
 }
