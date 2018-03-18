@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Storage from '../lib/storage';
+import Storage from 'storage';
 import Settings from './components/settings';
 
 
@@ -15,12 +15,11 @@ function renderRoot(settings) {
 }
 
 async function initialize() {
-  await store.initializeSettings()
-  const settings = await browser.storage.local.get()
+  await store.initializeSettings();
+  const settings = await store.getSettings();
   renderRoot(settings);
 
-  browser.storage.onChanged.addListener(async () => {
-    const settings = await browser.storage.local.get();
+  store.onChange((settings) => {
     renderRoot(settings);
   });
 }

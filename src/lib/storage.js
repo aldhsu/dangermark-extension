@@ -22,5 +22,15 @@ export default class Storage {
     const {warnings = {}} = settings;
     return warnings;
   }
+
+  async getSettings() {
+    return await browser.storage.local.get();
+  }
+
+  onChange(fn) {
+    browser.storage.onChanged.addListener(async () => {
+      fn(await this.getSettings());
+    });
+  }
 }
 

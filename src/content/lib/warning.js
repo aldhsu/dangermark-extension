@@ -1,4 +1,4 @@
-import Storage from '../../lib/storage';
+import Storage from 'storage';
 
 export default class Warning {
   constructor({context = window} = {}) {
@@ -26,18 +26,4 @@ export default class Warning {
 
     return this;
   }
-
-  _buildCSS() {
-`
-  #page-warning-extension-overlay::before {
-    content: '${this.warning.words || 'Warning'}';
-    font-size: 160px;
-    transform: rotate(-45deg);
-    display: block;
-    position: relative;
-    margin: 0 auto;
-  }
-`
-  }
 }
-
