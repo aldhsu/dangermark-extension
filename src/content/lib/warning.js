@@ -1,3 +1,5 @@
+import Storage from '../../lib/storage';
+
 export default class Warning {
   constructor({context = window} = {}) {
     this.context = context;
@@ -5,18 +7,17 @@ export default class Warning {
   }
 
   get shouldWarn() {
-    return this.warning;
+    return !!this.warning;
   }
 
   async testPage() {
     try {
       const url = this.context.location.toString();
-      const warnings = await browser.storage.local.get().then((settings) => { return settings.warnings });
+      const warnings = await new Storage().getWarnings();
       const address = Object.keys(warnings).find((address) => {
         const re = new RegExp(address);
         return url.match(re);
       });
-      if (!address) return;
 
       this.warning = warnings[address];
     } catch(e) {
